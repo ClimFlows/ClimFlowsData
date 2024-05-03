@@ -1,5 +1,7 @@
 module ClimFlowsData
 
-greet() = print("Hello World!")
+using LazyArtifacts
+
+include("DYNAMICO.jl")
 
 end # module ClimFlowsData
