@@ -1,8 +1,7 @@
 [VoronoiMeshes]
-git-tree-sha1 = "f3dfac9a10d959bd4f277c19e36fb7e56a8bde83"
+git-tree-sha1 = "1ed305fba4bad73ec2ed55ada8a1a0e07c389bf2"
 lazy = true
 [[VoronoiMeshes.download]]
 url = "https://github.com/ClimFlows/ClimFlowsData/raw/data/VoronoiMeshes.tar.gz"
-sha256 = "870776a4389161ad6882fde2ec7223f840e968fb1156d40bed7d8aa318bb3562"
-
+sha256 = "21d2e5ebd06da44ed7386f65929cedc43d8cd72ee5d1256c32f39003182d68e0"
 
