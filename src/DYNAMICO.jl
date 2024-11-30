@@ -1,11 +1,13 @@
+DYNAMICO_meshfile(name) = Base.Filesystem.joinpath(artifact"VoronoiMeshes", "VoronoiMeshes", name)
+
 """
     using NetCDF: ncread
-    using ClimFlowsData: DYNAMICO_reader
+    using ClimFlowsData: DYNAMICO_reader, DYNAMICO_meshfile
     using CFDomains: VoronoiSphere
-    sphere = VoronoiSphere(DYNAMICO_reader(ncread, "uni.1deg.mesh.nc") ; prec=Float32)
+    meshfile = DYNAMICO_meshfile("uni.1deg.mesh.nc")
+    sphere = VoronoiSphere(DYNAMICO_reader(ncread, meshfile) ; prec=Float32)
 """
-function DYNAMICO_reader(ncread, meshname)
-    meshfile = Base.Filesystem.joinpath(artifact"VoronoiMeshes", "VoronoiMeshes", meshname)
+function DYNAMICO_reader(ncread, meshfile)
     function reader(name)
         readvar(varname) = ncread(meshfile, varname)
         if name == :primal_num
