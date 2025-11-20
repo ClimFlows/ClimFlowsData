@@ -28,8 +28,8 @@ jobs:
       version: ${{ matrix.version }} 
     secrets: inherit
 
-  docs:
-    uses: ClimFlows/.github/.github/workflows/docs.yml@main
-    with: 
-      package: ClimFlowsData
-    secrets: inherit
+#  docs:
+#    uses: ClimFlows/.github/.github/workflows/docs.yml@main
+#    with: 
+#      package: ClimFlowsData
+#    secrets: inherit
