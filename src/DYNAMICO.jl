@@ -21,6 +21,14 @@ function DYNAMICO_reader(ncread, meshfile)
             le = readvar("le")
             de = readvar("de")
             return le ./ de
+        elseif name == :Avi
+            # FIXME: at some point we want to drop Riv2 and request that Avi be present in the mesh file.
+            return Avi(readvar("Av"), readvar("Riv2"))
+        elseif name == :Aiv
+            # FIXME: this workaround will fail with partitioned mesh files.
+            # When moving to partitioned meshes, we must request that Aiv be present in the mesh file.
+            Av, dual_vertex, Riv2, primal_deg, primal_vertex = map(readvar, ("Av", "dual_vertex", "Riv2", "primal_deg", "primal_vertex"))
+            return Aiv!(primal_deg, primal_vertex, dual_vertex, Avi(Av, Riv2))
         elseif name == :primal_perot_cov
             return perot_cov!(
                 (
@@ -52,4 +60,20 @@ function perot_cov!(perot, le, de, degree, edge)
         end
     end
     return perot
+end
+
+Avi(Av, Riv2) = [Av[vertex]*Riv2[icell, vertex] for icell=1:3, vertex in eachindex(Av)]
+
+function Aiv!(primal_deg, primal_vertex, dual_vertex, Avi)
+    Aiv = similar(primal_vertex, eltype(Avi))
+    for (cell, deg) in enumerate(primal_deg)
+        deg = primal_deg[cell]
+        for ivertex in 1:deg
+            vertex = primal_vertex[ivertex, cell]
+            icell = findfirst(i->dual_vertex[i,vertex]==cell, 1:3)
+            isnothing(icell) && @info "Aiv!" cell ivertex vertex dual_vertex[:,vertex]
+            Aiv[ivertex, cell] = Avi[icell, vertex]
+        end
+    end
+    return Aiv
 end
