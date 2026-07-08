@@ -5,3 +5,9 @@ lazy = true
 url = "https://github.com/ClimFlows/ClimFlowsData/raw/data/VoronoiMeshes.tar.gz"
 sha256 = "21d2e5ebd06da44ed7386f65929cedc43d8cd72ee5d1256c32f39003182d68e0"
 
+[VoronoiLowRes]
+git-tree-sha1 = "91d08f879948bedee485d012a5cfae6bca118df7"
+lazy = true
+[[VoronoiLowRes.download]]
+url = "https://github.com/ClimFlows/ClimFlowsData/raw/ceced06e6e145d4968cdf4c7ec0b07697b5911a1/VoronoiLowRes.tar.gz"
+sha256 = "fb24f899668f5f89968d8efbc42636babb2573aeda8aa5658e0b04ddfa6f6331"
