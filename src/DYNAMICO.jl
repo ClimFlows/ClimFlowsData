@@ -1,5 +1,3 @@
-DYNAMICO_meshfile(name) = Base.Filesystem.joinpath(artifact"VoronoiMeshes", "VoronoiMeshes", name)
-
 """
     using NetCDF: ncread
     using ClimFlowsData: DYNAMICO_reader, DYNAMICO_meshfile
